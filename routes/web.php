@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::get('/checkout', function () {
 Route::get('/success-checkout', function () {
     return view('success-checkout');
 })->name('success-checkout');
+
+// Socical Lite Route
+Route::get('/sign-in-google', [UserController::class, 'redirectToGoogle'])->name('sign.in.google');
+Route::get('/auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
